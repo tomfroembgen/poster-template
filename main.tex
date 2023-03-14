@@ -1,0 +1,82 @@
+\documentclass[
+25pt, 							% Font size
+a0paper, 						% Paper size
+portrait, 						% Orientation
+margin=0mm, 					% Outer margin
+innermargin=25mm,				% Inner margin
+blockverticalspace=10mm,		% vertical space between blocks 
+colspace=10mm, 					% horizontal space between columns
+subcolspace=5mm, 				% horizontal space between subcolumns
+]{tikzposter}
+
+%----------------------------------------------------------------
+%	Preamble
+%----------------------------------------------------------------
+\input{preamble.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%---------------------- Document --------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%----------------------------------------------------------------
+% 	Title setup
+%----------------------------------------------------------------
+\title{\textbf{TITLE}}
+\author{\underline{Author}\textcolor{UBBlueRGB}{$^*$}, Coauthors, and Barbara Kirchner}
+\institute{Mulliken Center for Theoretical Chemistry, University of Bonn, Beringstr. 4-6, D-53115 Bonn, Germany \\ \textcolor{UBBlueRGB}{$^*$name@thch.uni-bonn.de}}
+\maketitle
+
+%----------------------------------------------------------------
+% 	Central block with introduction / abstract
+%----------------------------------------------------------------
+% per default, the blocks are in gray. If you want to change the color,
+% use the \usecolorstyle{uni-bonn-blue} or \usecolorstyle{uni-bonn-yellow} commands.
+% To get back to the default gray color, use the \usecolorstyle{uni-bonn-grey} command.
+%
+% uncomment the following block if you don't want to have a central block
+%
+\block{Introduction}{
+	Make advertisement for your poster!
+}
+
+%----------------------------------------------------------------
+% 	Blocks with content in two columns
+%----------------------------------------------------------------
+% per default, the blocks are in gray. If you want to change the color,
+% use the \usecolorstyle{uni-bonn-blue} or \usecolorstyle{uni-bonn-yellow} commands.
+% To get back to the default gray color, use the \usecolorstyle{uni-bonn-grey} command.
+%
+\begin{columns}
+	% left column
+	\column{0.5}	% width of the column
+	\usecolorstyle{uni-bonn-blue} 		% color of the blocks
+
+	\block{A simple figure}{
+		\begin{tikzfigure}
+			\centering
+			\includegraphics[width=0.9\linewidth]{example.pdf}
+			%\caption{Caption for this fancy figure}
+		\end{tikzfigure}
+	}
+
+	\block{Acknowledgements}{
+		Love and support to the Kirchner group
+	}
+
+	% right column
+	\column{0.5}	% width of the column
+	\usecolorstyle{uni-bonn-yellow}	     % color of the blocks
+
+	\block{Some references}{
+		My first paper\autocite{cluster-analysis-in-travis}
+	}
+
+	% References
+	\block{}{\printbibliography}
+\end{columns}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------------- End of Document ----------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

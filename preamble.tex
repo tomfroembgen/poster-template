@@ -1,0 +1,201 @@
+%-------------------------------------------------------------------------------
+%------------------------------- PREAMBLE --------------------------------------
+%-------------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------------
+% 	colors
+%-------------------------------------------------------------------------------
+\usepackage{xcolor}
+
+% define uni-bonn colors
+\definecolor{UBBlue}{cmyk}{1.0,0.7,0,0}
+\definecolor{UBYellow}{cmyk}{0,0.3,1.0,0}
+\definecolor{UBGray}{cmyk}{0,0,0.15,0.55}
+\definecolor{UBBlueRGB}{RGB}{7,82,154}
+\definecolor{UBYellowRGB}{RGB}{255,185,12}
+\definecolor{UBGrayRGB}{RGB}{144,144,133}
+
+% define a certain color style, giving the colors for the background, title, blocks, etc.
+\definecolorstyle{uni-bonn-grey}{}
+{
+	\colorlet{backgroundcolor}{white}
+	\colorlet{blocktitlebgcolor}{UBGrayRGB}
+	\colorlet{blocktitlefgcolor}{black}
+	\colorlet{blockbodybgcolor}{white}
+	\colorlet{blockbodyfgcolor}{black}
+}
+
+% define another block style, giving the colors for the block title and body
+% for blue blocks
+\definecolorstyle{uni-bonn-blue}{}{
+	\colorlet{blocktitlebgcolor}{UBBlueRGB}
+}
+% for yellow blocks
+\definecolorstyle{uni-bonn-yellow}{}{
+	\colorlet{blocktitlebgcolor}{UBYellowRGB}
+}
+
+% define a title style, giving the colors for the title and the logo
+\definetitlestyle{uni-bonn}{
+	width=.8\textwidth,
+	linewidth=0pt,
+	innersep=8mm,
+	titletotopverticalspace=80mm,
+	titletoblockverticalspace=20mm,
+}{
+	% logo figure
+	\begin{scope}
+		%
+		% uni bonn and mctc logo
+		\node[anchor=north east, inner sep=0] (uni_logo) at (412.0mm,584.5mm) {\includegraphics[height=80mm]{figures/logo_uni-bonn_mctc.png}};
+		%
+		% comment the following two block(s) if you dont have 
+		% a secondary logo or personal qr code
+		%
+		% secondary logo 
+		\node[anchor=north west, inner sep=0] (imprs_logo) at (-321.0mm,575.0mm) {\includegraphics[height=70mm]{figures/logo_imprs_recharge.png}};
+		%
+		% personal qr code
+		\node[anchor=north west, inner sep=0] (qrcode) at (-415.0mm,575.0mm) {\includegraphics[height=90mm]{figures/qrcode-TF.png}};
+		%
+		% blue line
+		\draw[anchor=north east,
+			rounded corners=20pt,
+			line width = 6.0mm,
+			color=UBBlueRGB]
+		(uni_logo.north east) ++(-160mm, -3.3mm) -| ++( -661mm, -1153mm);
+		%
+		% uncomment the following block if you dont have a secondary logo 
+		% and want the gray line from the uni bonn logo
+		%
+		% gray line
+		% \draw[anchor=north east,
+		% 	rounded corners=50pt,
+		% 	line width = 6.0mm,
+		% 	color=UBGrayRGB]
+		% (uni_logo.north east) ++(-160mm,-50.95mm) -| ++( -644.4mm, -220mm);
+		%
+		% yellow line
+		\draw[anchor=north east,
+			rounded corners=20pt,
+			line width = 6.0mm,
+			color=UBYellowRGB]
+		(uni_logo.north east) ++( -3.07mm,-79mm) |- ++( -805mm, -1091mm);
+	\end{scope}
+}
+
+
+% summarize this in a layout theme
+\definelayouttheme{uni-bonn}{
+	\usecolorstyle{uni-bonn-grey}
+	\usebackgroundstyle{Default}
+	\usetitlestyle{uni-bonn}
+	\useblockstyle{Default}
+	\useinnerblockstyle{Default}
+	\usenotestyle{Default}
+}
+
+% finally, use the theme
+\usetheme{uni-bonn}
+
+
+%-------------------------------------------------------------------------------
+% 	fancy layout options
+%-------------------------------------------------------------------------------
+% \usepackage{layouts}          % for printing page width:
+% textwidth in inches: \printinunitsof{in}\prntlen{\textwidth}
+
+
+%-------------------------------------------------------------------------------
+% 	language and time
+%-------------------------------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}\DeclareUnicodeCharacter{2212}{-}
+\usepackage[american]{babel}
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{bookmark}
+
+%-------------------------------------------------------------------------------
+% 	font
+%-------------------------------------------------------------------------------
+\usepackage{lmodern}			% use lmodern font
+\renewcommand{\familydefault}{\sfdefault}
+\linespread{1.2}
+
+
+%-------------------------------------------------------------------------------
+% 	tables
+%-------------------------------------------------------------------------------
+\usepackage{tabularx}					% table with flexible column width
+\usepackage{booktabs}                   % horizontal lines
+\usepackage{float} 						% table placement
+\usepackage{multirow} 					% multirow table
+
+%-------------------------------------------------------------------------------
+% 	figure, graphics
+%-------------------------------------------------------------------------------
+\usepackage[%
+	singlelinecheck=true,
+	justification=justified,
+	format=plain,
+	font=small,
+	labelfont=it
+]{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+
+\usepackage{tikz}
+
+%-------------------------------------------------------------------------------
+% 	math
+%-------------------------------------------------------------------------------
+\usepackage{amsmath,amsfonts,amsthm,amssymb,amstext}
+\usepackage[]{sansmath}                   % for math fonts in sans serif
+\usepackage{siunitx}
+\sisetup{%
+detect-all,                             % alle äußeren Schriftkonventionen übernehmen
+per-mode=fraction,                      % \per creates fraction
+output-decimal-marker={.},              % decimal symbol 
+unit-mode=text,                         % Einheiten im Textmodus
+separate-uncertainty=true,              % von/bis oder \pm haben beide Einheit nach Zahl
+range-phrase=\ {\text{\textendash}}\ ,  % range denoted with endash (note spacing)
+range-units=single,                     % range has only one unit
+exponent-product=\cdot,                 % use \cdot: \SI{6,626E-34}{\joule\second}
+}
+\DeclareSIUnit{\calorie}{cal}
+\DeclareSIUnit{\ppm}{ppm}
+\DeclareSIUnit{\kcal}{\kilo\calorie}
+
+
+%-------------------------------------------------------------------------------
+% 	bibliography, citation, links
+%-------------------------------------------------------------------------------
+\usepackage[style=english]{csquotes} % required by biblatex.sty
+\usepackage[backend=biber,style=chem-angew,maxbibnames=5,sorting=none]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=UBBlueRGB,
+	citecolor=UBBlueRGB,
+	filecolor=UBBlueRGB,
+	urlcolor=UBBlueRGB
+}
+\usepackage[nameinlink]{cleveref}
+
+
+
+%-------------------------------------------------------------------------------
+%   miscellaneous
+%-------------------------------------------------------------------------------
+\newcommand{\boltz}{k_{\mathrm{B}}}             % Boltzmann constant
+\usepackage{lipsum}
+
+\tikzposterlatexaffectionproofoff               % remove tikz poster watermark
+
+
+%-------------------------------------------------------------------------------
+%------------------------------- END OF PREAMBLE -------------------------------
+%-------------------------------------------------------------------------------
