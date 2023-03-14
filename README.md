@@ -4,7 +4,7 @@ Written by Tom Frömbgen for the Kirchner group at the University of Bonn.
 
 ## Usage
 
-This is our template for scientific conference posters. Feel free to adjust it to your needs, but please keep the overall design. Please do not modify this repository directly.
+This is our template for scientific conference posters. Feel free to adjust it to your needs, but please keep the overall design.
 
 See the [example poster](main.pdf) for a preview.
 
